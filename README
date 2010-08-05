@@ -24,3 +24,5 @@ TODOs
   4) Remove the #test command
   5) Add a min time between commands for non-admin users
   6) Ability for admins to give other players items from in game
+  7) Add some better debug message handling/loggin
+  8) Reduce the spam from idle messages
