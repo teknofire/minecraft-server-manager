@@ -22,3 +22,5 @@ TODOs
   2) Allow user to send commands directly to the java console through the manager
   3) Add a config options to manager admin users
   4) Remove the #test command
+  5) Add a min time between commands for non-admin users
+  6) Ability for admins to give other players items from in game
