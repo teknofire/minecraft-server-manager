@@ -1,0 +1,11 @@
+Getting Started
+
+1) Download the minecraft server jar from the http://minecraft.net website
+2) Place the jar file in the same directory as the manager.rb file
+3) Run 'ruby manager.rb'
+4) Log into your server!
+
+TODOs
+
+1) Specify a path to an existing minecraft server jar file.
+2) Allow user to send commands directly to the java console through the manager
