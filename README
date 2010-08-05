@@ -21,4 +21,4 @@ TODOs
   1) Specify a path to an existing minecraft server jar file.
   2) Allow user to send commands directly to the java console through the manager
   3) Add a config options to manager admin users
-4) Remove the #test command
+  4) Remove the #test command
