@@ -31,9 +31,9 @@ class GreedyPlugin < MinecraftBase
 
   def tnt(user, *h)
     say("Happy exploding")
-    give(user, [45, 384])
+    give(user, [46, 384])
   end
-	
+
 	def gimme(user, *h)
 		stuff = [{
 			:id => 50,
