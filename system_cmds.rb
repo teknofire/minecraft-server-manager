@@ -22,15 +22,33 @@ class SystemCmds < MinecraftBase
 		load_plugins	
 	end	
 
-	def process(cmd, user, *h)
-		if self.respond_to? cmd
-			self.send(cmd, user, *h)
+  def decode(line)
+    if m = line.match(/<(\w+)>\s#(\w+)\s*(.*)/)
+      marray = m.to_a
+      matched = marray.shift
+      cmd = { :user => marray.shift, :cmd => marray.shift.to_sym }
+      cmd[:opts] = marray.shift.split(' ').compact
+
+      return cmd
+    else
+      false
+    end
+  end
+
+	def process(line)
+    output = decode(line)
+    return unless output
+
+		if self.respond_to? output[:cmd]
+			self.send(output[:cmd], output[:user], *output[:opts])
 		else
 			@plugins.each do |plugin|
         begin
-  				plugin.send(cmd, user, *h) if plugin.respond_to? cmd
+          if plugin.respond_to? output[:cmd]
+			      plugin.send(output[:cmd], output[:user], *output[:opts]) 
+          end
         rescue => e
-          puts "Exception: cmd: #{cmd} user: #{user} opts: #{h.inspect}"
+          puts "Exception: #{output.inspect}"
           puts e
         end
 			end
