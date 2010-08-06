@@ -9,7 +9,6 @@ class GreedyPlugin < MinecraftBase
     count = opts.shift
     count = 1 if count.nil?
 
-    say("Blorch")
 		cmd("give #{user} #{id}\n" * count.to_i)
 	end
 
