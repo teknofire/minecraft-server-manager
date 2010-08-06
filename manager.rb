@@ -47,13 +47,14 @@ Dir.chdir(CONFIG['server_path']) do
     	puts "Waiting for users"
     	while true
     	  if outputs = select([stdout,stderr], nil, nil, 5)
-          outputs.each do |io|
+          outputs.first.each do |io|
      	  	  line = io.gets
 		  		  puts line
 
   				  #get_cmd(line)
   				  sys.process(line)
             #output[:cmd], output[:user], output[:opts]) if output
+					end
       	else
         	puts "Nothing happening"
       	end
