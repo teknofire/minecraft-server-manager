@@ -10,6 +10,7 @@ class MinecraftBase
   end
 
   def cmd(text)
+    puts text
     @input.puts(text)
   end
 end
@@ -26,7 +27,12 @@ class SystemCmds < MinecraftBase
 			self.send(cmd, user, *h)
 		else
 			@plugins.each do |plugin|
-				plugin.send(cmd, user, *h) if plugin.respond_to? cmd
+        begin
+  				plugin.send(cmd, user, *h) if plugin.respond_to? cmd
+        rescue => e
+          puts "Exception: cmd: #{cmd} user: #{user} opts: #{h.inspect}"
+          puts e
+        end
 			end
 		end
 	end
@@ -63,9 +69,9 @@ class SystemCmds < MinecraftBase
 	
 	def load_plugins
 		@plugins = []
-		Dir.entries('plugins').each do |plugin|
+		Dir.entries(PLUGIN_DIR).each do |plugin|
 			next if plugin[0].chr == '.'
-			load plugin
+			load File.join(PLUGIN_DIR, plugin)
 			@plugins << Kernel.const_get(plugin.gsub('.rb', '').classify).new(@input)
 		end
 	end

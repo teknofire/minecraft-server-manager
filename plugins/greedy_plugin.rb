@@ -3,8 +3,9 @@ class GreedyPlugin < MinecraftBase
 		say('Testing i say!')
 	end
 
-	def give(user, id, count, *h)
-		cmd("give #{user} #{id}\n" * count.to_i)
+	def give(user, *h)
+    opts = h.first
+		cmd("give #{user} #{opts[0]}\n" * opts[1].to_i)
 	end
 	
 	def gimme(user, *h)
@@ -13,13 +14,13 @@ class GreedyPlugin < MinecraftBase
 			:count => 1
 		}, {
 			:id => 277,
-			:count => 2
+			:count => 1
 		}, {
 			:id => 278,
-			:count => 2
+			:count => 1
 		}, {
 			:id => 279,
-			:count => 2
+			:count => 1
 		}, {
 			:id => 50,
 			:count => 64
@@ -28,7 +29,7 @@ class GreedyPlugin < MinecraftBase
 			:count => 384
 		}, {
 			:id => 333,
-			:count => 2
+			:count => 1
 		}]
 		say("Giving #{user} stuff")
 		stuff.each do |item|
