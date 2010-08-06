@@ -38,7 +38,10 @@ class GreedyPlugin < MinecraftBase
 		stuff = [{
 			:id => 50,
 			:count => 64
-		}]
+		}, {
+      :id => 333,
+      :count => 1
+    }]
     givestuff(user, stuff)
     say("Have you tried asking for #tools or #tnt?")
 	end
