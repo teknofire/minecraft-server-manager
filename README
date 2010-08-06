@@ -1,7 +1,7 @@
 Getting Started
 ---------------
   1) Download the minecraft server jar from the http://minecraft.net website
-  2) Modify the minecraft.yml in the manager to point to your minecraft server directory
+  2) Copy the minecraft.yml.example to minecraft.yml and edit it to point to your minecraft server directory.  Defaults to ./server in the manager directory.
   3) Run 'ruby manager.rb'
   4) Log into your server!
 
@@ -13,6 +13,7 @@ In game commands
 Greedy Plugin
 -------------
   #gimme - This will throw down several items
+  #tons <id> - Gives tons of item with the specified id
   #give <id> <count> - Thows down the given number of item with the specified id
   #test - Debug cmd, will be removed
 
