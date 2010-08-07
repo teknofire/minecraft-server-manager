@@ -28,20 +28,7 @@ class GreedyPlugin < MinecraftBase
   end
 
   def tools(user, *opts)
- 		stuff = [{
-			:id => 276,
-			:count => 1
-		}, {
-			:id => 277,
-			:count => 1
-		}, {
-			:id => 278,
-			:count => 1
-		}, {
-			:id => 279,
-			:count => 1
-		}]
-    givestuff(user, stuff)
+    kit(user, 'tools')
   end
 
   def tnt(user, *opts)
