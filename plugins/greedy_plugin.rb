@@ -36,7 +36,7 @@ class GreedyPlugin < MinecraftBase
 
   def tnt(user, *opts)
     say("Happy exploding")
-    give(user, 46, 384)
+    give(user, 46, 128)
   end
 
   def boat(user, *opts)
