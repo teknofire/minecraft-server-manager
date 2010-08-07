@@ -1,24 +1,41 @@
 class MinecraftBase
-	def initialize(input)
-		@input = input
+	def initialize(stdin, stdout, stderr)
+		@stdin = stdin
+    @stdout = stdout
+    @stderr = stderr
 	end
 
 	protected
-
+  def permission_denied
+		say("You do not have permission to do that")
+	end
+	
   def say(text)
     cmd("say #{text}")
   end
 
   def cmd(text)
     puts text
-    @input.puts(text)
+    @stdin.puts(text)
+  end
+
+  def read(timeout=10)
+    if select(nil, [stderr], nil, timeout)
+      output = []
+      while not stdout.eof?
+        output << stdout.gets
+      end
+      output
+    end
   end
 end
 
 class SystemCmds < MinecraftBase
-	def initialize(input)
+	def initialize(stdin, stdout, stderr)
     @admin = %w{ console teknofire b1sh0p }
-		@input = input
+		@stdin = stdin
+    @stdout = stdout
+    @stderr = stderr
 		load_plugins	
 	end	
 
@@ -39,33 +56,24 @@ class SystemCmds < MinecraftBase
     output = decode(line)
     return unless output
 
-		if self.respond_to? output[:cmd]
-			self.send(output[:cmd], output[:user], *output[:opts])
-		else
-			@plugins.each do |plugin|
-        begin
+    begin
+  		if self.respond_to? output[:cmd]
+  			self.send(output[:cmd], output[:user], *output[:opts])
+  		else
+  			@plugins.each do |plugin|
           if plugin.respond_to? output[:cmd]
 			      plugin.send(output[:cmd], output[:user], *output[:opts]) 
           end
-        rescue => e
-          puts "Exception: #{output.inspect}"
-          puts e
-        end
-			end
+			  end
+      end
+    rescue Exception => e
+      puts "Exception: #{e}"
+      puts "Params: #{output.inspect}"
+      puts e.backtrace
 		end
 	end
 
-	def stop(user, *h)
-    if @admin.include? user
-      say("Server is stopping in 5 seconds")
-      sleep(5)
-      cmd('stop')
-    else
-			permission_denied
-    end
-	end
-	
-	def reload(user, *h)
+	def reload(user, *opts)
 		if @admin.include? user
 			say("Reloading plugins")
 			@plugins.each do |plugin|
@@ -81,16 +89,13 @@ class SystemCmds < MinecraftBase
 	end
 
 	protected
-	def permission_denied
-		say("You do not have permission to do that")
-	end
-	
+
 	def load_plugins
 		@plugins = []
 		Dir.entries(PLUGIN_DIR).each do |plugin|
 			next if plugin[0].chr == '.'
 			load File.join(PLUGIN_DIR, plugin)
-			@plugins << Kernel.const_get(plugin.gsub('.rb', '').classify).new(@input)
+			@plugins << Kernel.const_get(plugin.gsub('.rb', '').classify).new(@stdin, @stdout, @stderr)
 		end
 	end
 end

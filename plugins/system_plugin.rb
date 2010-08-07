@@ -1,0 +1,3 @@
+class SystemPlugin
+
+end

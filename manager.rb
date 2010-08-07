@@ -43,7 +43,7 @@ Dir.chdir(CONFIG['server_path']) do
     end
 
   	begin
-  		sys = SystemCmds.new(stdin)
+  		sys = SystemCmds.new(stdin, stdout, stderr)
     	puts "Waiting for users"
     	while true
     	  if outputs = select([stdout,stderr], nil, nil, 5)
