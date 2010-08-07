@@ -4,11 +4,11 @@ class GreedyPlugin < MinecraftBase
 	end
 
 	def give(user, *opts)
-    id = opts.shift
+    item = opts.shift
     count = opts.shift
     count = 1 if count.nil?
 
-		cmd("give #{user} #{id}\n" * count.to_i)
+		cmd("give #{user} #{id(item)}\n" * count.to_i)
 	end
 
   def kit(user, *opts)
@@ -57,6 +57,18 @@ class GreedyPlugin < MinecraftBase
 	end
 
   protected
+  def id(name)
+    @blocks ||= YAML.load_file(File.join(BASE_DIR, 'mc_block_nameid.yml'))
+    @items ||= YAML.load_file(File.join(BASE_DIR, 'mc_item_nameid.yml'))
+
+    if @blocks.include? name
+      return @blocks[name]
+    elsif @items.include? name
+      return @items[name]
+    else
+      return name
+    end
+  end
 
   def load_kits
     return YAML.load_file(File.join(BASE_DIR, 'kits.yml')) 
