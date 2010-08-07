@@ -9,7 +9,10 @@ require 'system_cmds.rb'
 PLUGIN_DIR = File.join(Dir.pwd, 'plugins')
 CONFIG = YAML.load_file('minecraft.yml')
 
-cmd = "java -Xmx1024M -Xms1024M -jar #{CONFIG['server_jar']} nogui"
+Xmx = CONFIG['Xmx'] || '1024M'
+Xms = CONFIG['Xms'] || '1024M'
+
+cmd = "java -Xmx#{Xmx} -Xms#{Xms} -jar #{CONFIG['server_jar']} nogui"
 
 def get_cmd(line)
 	if m = line.match(/<(\w+)>\s#(\w+)\s*(.*)/)
@@ -56,7 +59,7 @@ Dir.chdir(CONFIG['server_path']) do
             #output[:cmd], output[:user], output[:opts]) if output
 					end
       	else
-        	puts "Nothing happening"
+        	#puts "Nothing happening"
       	end
 		  end
     rescue Exception => e
