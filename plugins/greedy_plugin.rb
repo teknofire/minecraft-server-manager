@@ -12,9 +12,19 @@ class GreedyPlugin < MinecraftBase
 	end
 
   def kit(user, *opts)
-    load_kit(opts.first).each do |item|
+    kit = load_kits[opts.first]
+    if kit.nil? 
+      say("Could not find the #{opts.first} kit")
+      return
+    end
+
+    kit.each do |item|
       give(user, *item)
     end
+  end
+
+  def kits(user, *opts)
+    say("Available kits: #{load_kits.keys.join(', ')}")  
   end
 
   def tools(user, *opts)
@@ -61,9 +71,8 @@ class GreedyPlugin < MinecraftBase
 
   protected
 
-  def load_kit(kit)
-    @kits = YAML.load_file(File.join(BASE_DIR, 'kits.yml')) 
-    return @kits[kit]  
+  def load_kits
+    return YAML.load_file(File.join(BASE_DIR, 'kits.yml')) 
   end
 
   def givestuff(user, stuff)
