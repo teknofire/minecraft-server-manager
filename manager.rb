@@ -6,7 +6,8 @@ require 'open3'
 require 'yaml'
 require 'system_cmds.rb'
 
-PLUGIN_DIR = File.join(Dir.pwd, 'plugins')
+BASE_DIR = Dir.pwd
+PLUGIN_DIR = File.join(BASE_DIR, 'plugins')
 CONFIG = YAML.load_file('minecraft.yml')
 
 Xmx = CONFIG['Xmx'] || '1024M'

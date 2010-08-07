@@ -11,6 +11,12 @@ class GreedyPlugin < MinecraftBase
 		cmd("give #{user} #{id}\n" * count.to_i)
 	end
 
+  def kit(user, *opts)
+    load_kit(opts.first).each do |item|
+      give(user, *item)
+    end
+  end
+
   def tools(user, *opts)
  		stuff = [{
 			:id => 276,
@@ -54,6 +60,11 @@ class GreedyPlugin < MinecraftBase
 	end
 
   protected
+
+  def load_kit(kit)
+    @kits = YAML.load_file(File.join(BASE_DIR, 'kits.yml')) 
+    return @kits[kit]  
+  end
 
   def givestuff(user, stuff)
 		say("Giving #{user} stuff")
