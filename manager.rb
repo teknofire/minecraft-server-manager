@@ -62,12 +62,12 @@ Dir.chdir(CONFIG['server_path']) do
         	#puts "Nothing happening"
       	end
 		  end
-    rescue Exception => e
-      puts "An exception occured"
-      puts e
     ensure
       puts "Stopping server"
-      sys.process('stop', 'console')
+      begin
+        sys.process('stop', 'console')
+      rescue => e
+      end
     end
   end
 end

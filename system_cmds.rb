@@ -19,14 +19,10 @@ class MinecraftBase
     @stdin.puts(text)
   end
 
-  def read(timeout=10)
-    if select(nil, [stderr], nil, timeout)
-      output = []
-      while not stdout.eof?
-        output << stdout.gets
-      end
-      output
-    end
+  def read(timeout=5)
+    output = @stderr.gets if select([@stderr], nil, nil, timeout)
+
+    output.match(/\[INFO\] (.*)/)[1]
   end
 end
 
