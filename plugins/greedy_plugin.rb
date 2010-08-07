@@ -1,10 +1,9 @@
 class GreedyPlugin < MinecraftBase
-	def test(user, *h)
+	def test(user, *opts)
 		say('Testing i say!')
 	end
 
-	def give(user, *h)
-    opts = h.first
+	def give(user, *opts)
     id = opts.shift
     count = opts.shift
     count = 1 if count.nil?
@@ -12,7 +11,7 @@ class GreedyPlugin < MinecraftBase
 		cmd("give #{user} #{id}\n" * count.to_i)
 	end
 
-  def tools(user, *h)
+  def tools(user, *opts)
  		stuff = [{
 			:id => 276,
 			:count => 1
@@ -29,12 +28,20 @@ class GreedyPlugin < MinecraftBase
     givestuff(user, stuff)
   end
 
-  def tnt(user, *h)
+  def tnt(user, *opts)
     say("Happy exploding")
-    give(user, [46, 384])
+    give(user, 46, 384)
   end
 
-	def gimme(user, *h)
+  def boat(user, *opts)
+    give(user, 333, 1)
+  end
+
+  def tons(user, *opts)
+    give(user, opts.first , 128)
+  end
+
+	def gimme(user, *opts)
 		stuff = [{
 			:id => 50,
 			:count => 64
@@ -51,7 +58,7 @@ class GreedyPlugin < MinecraftBase
   def givestuff(user, stuff)
 		say("Giving #{user} stuff")
 		stuff.each do |item|
-			give(user, [item[:id], item[:count]])
+			give(user, item[:id], item[:count])
 			sleep(0.1)
 		end
   end
