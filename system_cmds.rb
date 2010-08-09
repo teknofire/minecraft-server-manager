@@ -63,6 +63,7 @@ class SystemCmds < MinecraftBase
 			  end
       end
     rescue Exception => e
+      say("Exception occured while executing command")
       puts "Exception: #{e}"
       puts "Params: #{output.inspect}"
       puts e.backtrace
