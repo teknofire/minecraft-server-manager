@@ -47,6 +47,7 @@ class GreedyPlugin < MinecraftBase
   def tons(user, *opts)
     give(user, opts.first , 128)
   end
+  alias_method :t, :tons
 
 	def gimme(user, *opts)
 		stuff = [{
