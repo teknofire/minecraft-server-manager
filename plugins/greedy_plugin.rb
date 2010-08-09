@@ -3,6 +3,14 @@ class GreedyPlugin < MinecraftBase
 		say('Testing i say!')
 	end
 
+  def what(user, *opts)
+    if id(opts.first) != opts.first
+      say("#{opts.first} is #{id(opts.first)}")
+    else
+      say("I don't know what #{opts.first} is")
+    end
+  end
+
 	def give(user, *opts)
     item = opts.shift
     count = opts.shift.to_i
