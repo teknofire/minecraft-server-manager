@@ -53,7 +53,7 @@ fire: 51
 mob_spawner: 52
 wood_stairs: 53
 chest: 54
-redstone: 55
+redstone_wire: 55
 diamond: 56
 diamond_block: 57
 workbench: 58
