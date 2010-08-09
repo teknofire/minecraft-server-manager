@@ -29,7 +29,7 @@ cyan_cloth: 27
 blue_cloth: 28
 purple_cloth: 29
 indigo_cloth: 30
-violet cloth: 31
+violet_cloth: 31
 magenta_cloth: 32
 pink_cloth: 33
 black_cloth: 34
@@ -55,7 +55,7 @@ wood_stairs: 53
 chest: 54
 redstone: 55
 diamond: 56
-diamon_block: 57
+diamond_block: 57
 workbench: 58
 crops: 59
 soil: 60
@@ -72,9 +72,9 @@ stone_plate: 70
 iron_door: 71
 wood_plate: 72
 redstone_ore: 73
-lite_redstone_ore: 74
+lit_redstone_ore: 74
 redstone_torch: 75
-restone_torch_on: 76
+redstone_torch_on: 76
 stone_button: 77
 snow: 78
 ice: 79

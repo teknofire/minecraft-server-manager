@@ -8,8 +8,17 @@ require 'system_cmds.rb'
 
 BASE_DIR = Dir.pwd
 PLUGIN_DIR = File.join(BASE_DIR, 'plugins')
-CONFIG = YAML.load_file('minecraft.yml')
 
+if File.exists? 'minecraft.yml'
+  config_file = 'minecraft.yml'
+elsif File.exists? 'config/minecraft.yml'
+  config_file = 'config/minecraft.yml'
+else
+  puts "Unable to find minecraft.yml config file please copy the 'config/minecraft.yml.example' file to 'config/minecraft.yml' and update it with your settings"
+  exit
+end
+
+CONFIG = YAML.load_file(config_file)
 Xmx = CONFIG['Xmx'] || '1024M'
 Xms = CONFIG['Xms'] || '1024M'
 

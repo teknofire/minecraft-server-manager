@@ -5,10 +5,14 @@ class GreedyPlugin < MinecraftBase
 
 	def give(user, *opts)
     item = opts.shift
-    count = opts.shift
-    count = 1 if count.nil?
+    count = opts.shift.to_i
+    count = 1 if count.nil? or count < 1
+    if count > 128
+      say("Max of 128 items per request")
+      count = 128
+    end
 
-		cmd("give #{user} #{id(item)}\n" * count.to_i)
+  	cmd("give #{user} #{id(item)}\n" * count)
 	end
 
   def kit(user, *opts)
@@ -58,8 +62,8 @@ class GreedyPlugin < MinecraftBase
 
   protected
   def id(name)
-    @blocks ||= YAML.load_file(File.join(BASE_DIR, 'mc_block_nameid.yml'))
-    @items ||= YAML.load_file(File.join(BASE_DIR, 'mc_item_nameid.yml'))
+    @blocks ||= YAML.load_file(File.join(BASE_DIR, 'config/mc_block_nameid.yml'))
+    @items ||= YAML.load_file(File.join(BASE_DIR, 'config/mc_item_nameid.yml'))
 
     if @blocks.include? name
       return @blocks[name]
@@ -71,7 +75,7 @@ class GreedyPlugin < MinecraftBase
   end
 
   def load_kits
-    return YAML.load_file(File.join(BASE_DIR, 'kits.yml')) 
+    return YAML.load_file(File.join(BASE_DIR, 'config/kits.yml')) 
   end
 
   def givestuff(user, stuff)
