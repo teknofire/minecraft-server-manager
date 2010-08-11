@@ -158,3 +158,6 @@ leather_pants:
 chainmail_pants: 
   max: 128
   id: 304
+bucket: 
+  id: 325
+  max: 4
