@@ -1,0 +1,160 @@
+--- 
+arrow: 
+  max: 128
+  id: 262
+diamond: 
+  max: 128
+  id: 264
+stone_axe: 
+  max: 128
+  id: 275
+redstone: 
+  max: 128
+  id: 331
+coal: 
+  max: 128
+  id: 263
+wood_shovel: 
+  max: 128
+  id: 269
+stone_pickaxe: 
+  max: 128
+  id: 274
+gold_sword: 
+  max: 128
+  id: 283
+flint_and_steel: 
+  max: 128
+  id: 259
+bowl: 
+  max: 128
+  id: 281
+gold_hoe: 
+  max: 128
+  id: 294
+seeds: 
+  max: 128
+  id: 295
+chainmail_helmet: 
+  max: 128
+  id: 302
+stone_sword: 
+  max: 128
+  id: 272
+feather: 
+  max: 128
+  id: 288
+wood_hoe: 
+  max: 128
+  id: 290
+iron_shovel: 
+  max: 128
+  id: 256
+iron_pickaxe: 
+  max: 128
+  id: 257
+wood_sword: 
+  max: 128
+  id: 268
+gold_shovel: 
+  max: 128
+  id: 284
+leather_chestplate: 
+  max: 128
+  id: 299
+leather_boots: 
+  max: 128
+  id: 301
+chainmail_boots: 
+  max: 128
+  id: 305
+wood_pickaxe: 
+  max: 128
+  id: 270
+diamond_sword: 
+  max: 128
+  id: 276
+diamond_axe: 
+  max: 128
+  id: 279
+gold_pickaxe: 
+  max: 128
+  id: 285
+gunpowder: 
+  max: 128
+  id: 289
+leather_helmet: 
+  max: 128
+  id: 298
+iron_chestplate: 
+  max: 128
+  id: 307
+apple: 
+  max: 128
+  id: 260
+iron_sword: 
+  max: 128
+  id: 267
+diamond_pickaxe: 
+  max: 128
+  id: 278
+stone_hoe: 
+  max: 128
+  id: 291
+bread: 
+  max: 128
+  id: 297
+chainmail_chestplate: 
+  max: 128
+  id: 303
+iron_axe: 
+  max: 128
+  id: 258
+iron_ingot: 
+  max: 128
+  id: 265
+diamond_shovel: 
+  max: 128
+  id: 277
+wood_axe: 
+  max: 128
+  id: 271
+gold_axe: 
+  max: 128
+  id: 286
+string: 
+  max: 128
+  id: 287
+iron_helmet: 
+  max: 128
+  id: 306
+stone_shovel: 
+  max: 128
+  id: 273
+stick: 
+  max: 128
+  id: 280
+iron_hoe: 
+  max: 128
+  id: 292
+wheat: 
+  max: 128
+  id: 296
+bow: 
+  max: 128
+  id: 261
+gold_ingot: 
+  max: 128
+  id: 266
+mushroom_soup: 
+  max: 128
+  id: 282
+diamond_hoe: 
+  max: 128
+  id: 293
+leather_pants: 
+  max: 128
+  id: 300
+chainmail_pants: 
+  max: 128
+  id: 304

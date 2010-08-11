@@ -15,9 +15,9 @@ class GreedyPlugin < MinecraftBase
     item = opts.shift
     count = opts.shift.to_i
     count = 1 if count.nil? or count < 1
-    if count > 128
-      say("Max of 128 items per request")
-      count = 128
+    if count > max(item)
+      say("Max for specified item is #{max(item)}")
+      count = max(item)
     end
 
   	cmd("give #{user} #{id(item)}\n" * count)
@@ -70,17 +70,39 @@ class GreedyPlugin < MinecraftBase
 	end
 
   protected
-  def id(name)
-    @blocks ||= YAML.load_file(File.join(BASE_DIR, 'config/mc_block_nameid.yml'))
-    @items ||= YAML.load_file(File.join(BASE_DIR, 'config/mc_item_nameid.yml'))
-
-    if @blocks.include? name
-      return @blocks[name]
-    elsif @items.include? name
-      return @items[name]
+  def blocks
+    @blocks ||= YAML.load_file(File.join(BASE_DIR, 'config/blocks.yml'))
+    @blocks
+  end
+  def items
+    @items ||= YAML.load_file(File.join(BASE_DIR, 'config/items.yml'))
+    @items
+  end
+  
+  def get(name)
+    if i = get_from_hash(name, blocks)
+      return i
+    elsif i = get_from_hash(name, items)
+      return i
     else
-      return name
-    end
+      nil
+    end 
+  end
+
+  def get_from_hash(name, hash)
+    return hash[name] if hash.key? name 
+    i = hash.select { |k,v| v['id'].to_s == name }
+    return i.empty? ? false : i.first[1]
+  end
+
+  def id(name)
+    i = get(name)
+    return i.nil? ? name : i['id']
+  end
+
+  def max(name)
+    i = get(name)
+    return i.nil? ? 128 : i['max']
   end
 
   def load_kits

@@ -1,0 +1,253 @@
+--- 
+air: 
+  max: 128
+  id: 0
+soil: 
+  max: 128
+  id: 60
+jukebox: 
+  max: 128
+  id: 84
+gravel: 
+  max: 128
+  id: 13
+pink_cloth: 
+  max: 128
+  id: 33
+chest: 
+  max: 128
+  id: 54
+orange_cloth: 
+  max: 128
+  id: 22
+green_cloth: 
+  max: 128
+  id: 25
+violet_cloth: 
+  max: 128
+  id: 31
+leaves: 
+  max: 128
+  id: 18
+white_cloth: 
+  max: 128
+  id: 36
+gold: 
+  max: 128
+  id: 41
+water: 
+  max: 128
+  id: 8
+cobblestone: 
+  max: 128
+  id: 4
+glass: 
+  max: 128
+  id: 20
+redstone_ore: 
+  max: 128
+  id: 73
+yellow_cloth: 
+  max: 128
+  id: 23
+purple_cloth: 
+  max: 128
+  id: 29
+fire: 
+  max: 128
+  id: 51
+reed: 
+  max: 128
+  id: 83
+obsidian: 
+  max: 3
+  id: 49
+redstone_torch: 
+  max: 128
+  id: 75
+red_mushroom: 
+  max: 128
+  id: 40
+gold_ore: 
+  max: 128
+  id: 14
+lava: 
+  max: 128
+  id: 10
+sand: 
+  max: 128
+  id: 12
+indigo_cloth: 
+  max: 128
+  id: 30
+redstone_wire: 
+  max: 128
+  id: 55
+cactus: 
+  max: 128
+  id: 81
+lit_redstone_ore: 
+  max: 128
+  id: 74
+rail: 
+  max: 128
+  id: 66
+red_cloth: 
+  max: 128
+  id: 21
+yellow_flower: 
+  max: 128
+  id: 37
+bookcase: 
+  max: 128
+  id: 47
+black_cloth: 
+  max: 128
+  id: 34
+door: 
+  max: 128
+  id: 64
+wood_plate: 
+  max: 128
+  id: 72
+snow: 
+  max: 128
+  id: 78
+iron_ore: 
+  max: 128
+  id: 15
+stone_plate: 
+  max: 128
+  id: 70
+coal_ore: 
+  max: 128
+  id: 16
+tnt: 
+  max: 128
+  id: 46
+cobblestone_stairs: 
+  max: 128
+  id: 67
+stair: 
+  max: 128
+  id: 44
+lever: 
+  max: 128
+  id: 69
+snow_block: 
+  max: 128
+  id: 80
+bedrock: 
+  max: 0
+  id: 7
+mob_spawner: 
+  max: 128
+  id: 52
+workbench: 
+  max: 128
+  id: 58
+lava_pool: 
+  max: 128
+  id: 11
+torch: 
+  max: 128
+  id: 50
+furnace: 
+  max: 128
+  id: 61
+crops: 
+  max: 128
+  id: 59
+clay: 
+  max: 128
+  id: 82
+dirt: 
+  max: 128
+  id: 3
+sponge: 
+  max: 128
+  id: 19
+ladder: 
+  max: 128
+  id: 65
+stone_button: 
+  max: 128
+  id: 77
+iron: 
+  max: 128
+  id: 42
+iron_door: 
+  max: 128
+  id: 71
+brown_mushroom: 
+  max: 128
+  id: 39
+wood: 
+  max: 128
+  id: 5
+grey_cloth: 
+  max: 128
+  id: 35
+cyan_cloth: 
+  max: 128
+  id: 27
+grass: 
+  max: 128
+  id: 2
+sapling: 
+  max: 128
+  id: 6
+redstone_torch_on: 
+  max: 128
+  id: 76
+brick: 
+  max: 128
+  id: 45
+diamond: 
+  max: 128
+  id: 56
+blue_cloth: 
+  max: 128
+  id: 28
+mossy_cobblestone: 
+  max: 128
+  id: 48
+log: 
+  max: 128
+  id: 17
+sign: 
+  max: 128
+  id: 68
+lime_cloth: 
+  max: 128
+  id: 24
+burning_furnace: 
+  max: 128
+  id: 62
+water_pool: 
+  max: 128
+  id: 9
+stone: 
+  max: 128
+  id: 1
+wood_stairs: 
+  max: 128
+  id: 53
+ice: 
+  max: 128
+  id: 79
+red_rose: 
+  max: 128
+  id: 38
+aqua_cloth: 
+  max: 128
+  id: 26
+diamond_block: 
+  max: 128
+  id: 57
+magenta_cloth: 
+  max: 128
+  id: 32
+double_stair: 
+  max: 128
+  id: 43
