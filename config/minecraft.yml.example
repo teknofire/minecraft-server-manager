@@ -1,2 +1,3 @@
 server_path: ./server
 server_jar: minecraft_server.jar
+admins: [console]
