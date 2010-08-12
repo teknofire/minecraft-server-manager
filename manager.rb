@@ -18,11 +18,11 @@ else
   exit
 end
 
-CONFIG = YAML.load_file(config_file)
-Xmx = CONFIG['Xmx'] || '1024M'
-Xms = CONFIG['Xms'] || '1024M'
+$CONFIG = YAML.load_file(config_file)
+Xmx = $CONFIG['Xmx'] || '1024M'
+Xms = $CONFIG['Xms'] || '1024M'
 
-cmd = "java -Xmx#{Xmx} -Xms#{Xms} -jar #{CONFIG['server_jar']} nogui"
+cmd = "java -Xmx#{Xmx} -Xms#{Xms} -jar #{$CONFIG['server_jar']} nogui"
 
 def get_cmd(line)
 	if m = line.match(/<(\w+)>\s#(\w+)\s*(.*)/)
@@ -38,7 +38,7 @@ def get_cmd(line)
 end
 
 puts "Starting minecraft server"
-Dir.chdir(CONFIG['server_path']) do
+Dir.chdir($CONFIG['server_path']) do
   Open3.popen3(cmd) do |stdin,stdout,stderr| 
     ready = false
     while true 
