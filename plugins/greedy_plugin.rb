@@ -20,7 +20,8 @@ class GreedyPlugin < MinecraftBase
       count = max(item)
     end
 
-  	say cmd("give #{user} #{id(item)} #{count}")
+  	response = cmd("give #{user} #{id(item)} #{count}")
+    say response unless response.match(/Giving \w+ some \d+/)
 	end
 
   def kit(user, *opts)
