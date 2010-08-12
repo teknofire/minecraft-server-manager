@@ -6,6 +6,10 @@ class MinecraftBase
 	end
 
 	protected
+  def admin?(user) 
+    $CONFIG['admins'].include? user
+  end
+
   def permission_denied
 		say("You do not have permission to do that")
 	end
@@ -17,6 +21,7 @@ class MinecraftBase
   def cmd(text)
     puts text
     @stdin.puts(text)
+    read
   end
 
   def read(timeout=5)
@@ -28,7 +33,6 @@ end
 
 class SystemCmds < MinecraftBase
 	def initialize(stdin, stdout, stderr)
-    @admin = %w{ console teknofire b1sh0p }
 		@stdin = stdin
     @stdout = stdout
     @stderr = stderr
@@ -41,7 +45,12 @@ class SystemCmds < MinecraftBase
       matched = marray.shift
       cmd = { :user => marray.shift, :cmd => marray.shift.to_sym }
       cmd[:opts] = marray.shift.split(' ').compact
-
+      return cmd
+    elsif m = line.match(/\[INFO\] (\w+) \[([\/\d\.]+):\d+\] logged in/)
+      marray = m.to_a
+      matched = marray.shift
+      cmd = { :user => marray.shift, :cmd => 'login' }
+      cmd[:opts] = marray.shift
       return cmd
     else
       false
@@ -71,7 +80,7 @@ class SystemCmds < MinecraftBase
 	end
 
 	def reload(user, *opts)
-		if @admin.include? user
+		if $CONFIG['admins'].include? user
 			say("Reloading plugins")
 			@plugins.each do |plugin|
 				begin
