@@ -20,7 +20,7 @@ class GreedyPlugin < MinecraftBase
       count = max(item)
     end
 
-  	cmd("give #{user} #{id(item)}\n" * count)
+  	say cmd("give #{user} #{id(item)} #{count}")
 	end
 
   def kit(user, *opts)
