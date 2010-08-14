@@ -19,10 +19,15 @@ class GreedyPlugin < MinecraftBase
       say("Max for specified item is #{max(item)}")
       count = max(item)
     end
-
-  	response = cmd("give #{user} #{id(item)} #{count}")
-    say response unless response.match(/Giving \w+ some \d+/)
-	end
+    if count > 64
+      while count > 0
+        giveit(user, item, count)
+        count -= 64
+      end
+    else
+      giveit(user, item, count)
+    end
+  end
 
   def kit(user, *opts)
     kit = load_kits[opts.first]
@@ -71,6 +76,11 @@ class GreedyPlugin < MinecraftBase
 	end
 
   protected
+  def giveit(user, item, count)
+  	response = cmd("give #{user} #{id(item)} #{count}")
+    say response unless response.match(/Giving \w+ some \d+/)
+  end
+
   def blocks
     @blocks ||= YAML.load_file(File.join(BASE_DIR, 'config/blocks.yml'))
     @blocks
