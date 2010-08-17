@@ -40,6 +40,8 @@ class SystemCmds < MinecraftBase
 	end	
 
   def decode(line)
+    return false if line.nil?
+
     if m = line.match(/<(\w+)>\s#(\w+)\s*(.*)/)
       marray = m.to_a
       matched = marray.shift
