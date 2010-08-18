@@ -26,8 +26,12 @@ class MinecraftBase
 
   def read(timeout=5)
     output = @stderr.gets if select([@stderr], nil, nil, timeout)
-
-    output.match(/\[INFO\] (.*)/)[1]
+    puts output
+    unless output.nil?
+      return output.match(/\[INFO\] (.*)/)[1]
+    else
+      return false
+    end
   end
 end
 
