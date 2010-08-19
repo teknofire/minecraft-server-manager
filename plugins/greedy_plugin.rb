@@ -21,7 +21,12 @@ class GreedyPlugin < MinecraftBase
     end
     if count > 64
       while count > 0
-        giveit(user, item, count)
+        if(count > 64) 
+          giveit(user, item, 64)
+        else
+          giveit(user, item, count)
+        end
+
         count -= 64
       end
     else
