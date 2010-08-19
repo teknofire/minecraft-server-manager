@@ -32,4 +32,16 @@ class SystemPlugin < MinecraftBase
       say cmd("deop #{opts.first}")
    end
   end
+  
+  def backup(user, *opts)
+    if admin? user
+      say "Starting backup"
+      cmd('save-off')
+      Dir.chdir($CONFIG['server_path']) do
+        puts `tar cvfz world-backup-#{Time.now.strftime("%Y-%m-%d")}.tar.gz #{$CONFIG['level_name']}`
+      end
+      cmd('save-on')
+      say "Backup complete"
+    end
+  end
 end
