@@ -37,9 +37,11 @@ end
 
 class SystemCmds < MinecraftBase
 	def initialize(stdin, stdout, stderr)
+    puts "Init"
 		@stdin = stdin
     @stdout = stdout
     @stderr = stderr
+
 		load_plugins	
 	end	
 
@@ -103,11 +105,21 @@ class SystemCmds < MinecraftBase
 	protected
 
 	def load_plugins
+    puts "Loading Plugins"
+
 		@plugins = []
 		Dir.entries(PLUGIN_DIR).each do |plugin|
-			next if plugin[0].chr == '.'
-			load File.join(PLUGIN_DIR, plugin)
-			@plugins << Kernel.const_get(plugin.gsub('.rb', '').classify).new(@stdin, @stdout, @stderr)
+			next if plugin[0] == ?.
+			f = File.join(PLUGIN_DIR, plugin)
+
+      puts "Requiring #{f}"
+      require f 
+
+      klass = Kernel.const_get(File.basename(f, '.rb').classify)
+      puts "Found #{klass}"
+      
+ 
+			@plugins << klass.new(@stdin, @stdout, @stderr)
 		end
 	end
 end
