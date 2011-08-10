@@ -1,10 +1,13 @@
 #!/usr/bin/env ruby
 
 require 'rubygems'
-require 'active_support'
+require 'bundler/setup'
+Bundler.require(:default)
+
+require 'active_support/core_ext/string'
 require 'open3'
 require 'yaml'
-require 'system_cmds.rb'
+require './system_cmds.rb'
 
 BASE_DIR = Dir.pwd
 PLUGIN_DIR = File.join(BASE_DIR, 'plugins')
@@ -41,12 +44,12 @@ puts "Starting minecraft server"
 Dir.chdir($CONFIG['server_path']) do
   Open3.popen3(cmd) do |stdin,stdout,stderr| 
     ready = false
-    while true 
+    while !ready do  
       if select([stderr],nil,nil, 5)
         output = stderr.gets
-        if output.match(/\[INFO\] Done!/)
+        if output.match(/\[INFO\] Done/)
           puts "Server ready"
-          break
+          ready = true
         else
           puts output
         end
@@ -54,24 +57,21 @@ Dir.chdir($CONFIG['server_path']) do
         puts "Nothing to do"
       end
     end
+    
+    begin
+      sys = SystemCmds.new(stdin, stdout, stderr)
+      puts "Waiting for users"
 
-  	begin
-  		sys = SystemCmds.new(stdin, stdout, stderr)
-    	puts "Waiting for users"
-    	while true
-    	  if outputs = select([stdout,stderr], nil, nil, 5)
+      loop do 
+        if outputs = select([stdout,stderr], nil, nil, 5)
           outputs.first.each do |io|
-     	  	  line = io.gets
-		  		  puts line
+            line = io.gets
+            puts line
 
-  				  #get_cmd(line)
-  				  sys.process(line)
-            #output[:cmd], output[:user], output[:opts]) if output
-					end
-      	else
-        	#puts "Nothing happening"
-      	end
-		  end
+            sys.process(line)
+          end
+        end
+      end
     ensure
       puts "Stopping server"
       begin
