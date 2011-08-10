@@ -2,3 +2,4 @@ minecraft.yml
 server
 *.swp
 server.*
+Gemfile.lock
