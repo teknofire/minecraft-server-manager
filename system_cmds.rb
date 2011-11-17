@@ -84,8 +84,8 @@ class SystemCmds < MinecraftBase
       puts "Exception: #{e}"
       puts "Params: #{output.inspect}"
       puts e.backtrace
-		end
-	end
+    end
+  end
 
   def reload(user, *opts)
     if $CONFIG['admins'].include? user
