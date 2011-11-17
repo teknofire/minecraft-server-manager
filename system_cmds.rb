@@ -1,11 +1,11 @@
 class MinecraftBase
-	def initialize(stdin, stdout, stderr)
-		@stdin = stdin
+  def initialize(stdin, stdout, stderr)
+    @stdin = stdin
     @stdout = stdout
     @stderr = stderr
-	end
+  end
 
-	protected
+  protected
   def admin?(user) 
     $CONFIG['admins'].include? user
   end
@@ -36,14 +36,14 @@ class MinecraftBase
 end
 
 class SystemCmds < MinecraftBase
-	def initialize(stdin, stdout, stderr)
+  def initialize(stdin, stdout, stderr)
     puts "Init"
-		@stdin = stdin
+    @stdin = stdin
     @stdout = stdout
     @stderr = stderr
 
-		load_plugins	
-	end	
+    load_plugins	
+  end	
 
   def decode(line)
     return false if line.nil?
@@ -70,14 +70,14 @@ class SystemCmds < MinecraftBase
     return unless output
 
     begin
-  		if self.respond_to? output[:cmd]
-  			self.send(output[:cmd], output[:user], *output[:opts])
-  		else
-  			@plugins.each do |plugin|
+      if self.respond_to? output[:cmd]
+        self.send(output[:cmd], output[:user], *output[:opts])
+      else
+        @plugins.each do |plugin|
           if plugin.respond_to? output[:cmd]
-			      plugin.send(output[:cmd], output[:user], *output[:opts]) 
+            plugin.send(output[:cmd], output[:user], *output[:opts]) 
           end
-			  end
+        end
       end
     rescue Exception => e
       say("Exception occured while executing command")
