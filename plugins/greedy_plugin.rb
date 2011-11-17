@@ -1,7 +1,7 @@
 class GreedyPlugin < MinecraftBase
-	def test(user, *opts)
-		say('Testing i say!')
-	end
+  def test(user, *opts)
+    say('Testing i say!')
+  end
 
   def what(user, *opts)
     if id(opts.first) != opts.first
@@ -11,7 +11,7 @@ class GreedyPlugin < MinecraftBase
     end
   end
 
-	def give(user, *opts)
+  def give(user, *opts)
     item = opts.shift
     count = opts.shift.to_i
     count = 1 if count.nil? or count < 1
@@ -68,21 +68,21 @@ class GreedyPlugin < MinecraftBase
   end
   alias_method :t, :tons
 
-	def gimme(user, *opts)
-		stuff = [{
-			:id => 50,
-			:count => 64
-		}, {
+  def gimme(user, *opts)
+    stuff = [{
+      :id => 50,
+      :count => 64
+    }, {
       :id => 333,
       :count => 1
     }]
     givestuff(user, stuff)
     say("Have you tried asking for #tools or #tnt?")
-	end
+  end
 
   protected
   def giveit(user, item, count)
-  	response = cmd("give #{user} #{id(item)} #{count}")
+    response = cmd("give #{user} #{id(item)} #{count}")
     say response unless response.match(/Giving \w+ some \d+/)
   end
 
@@ -90,11 +90,12 @@ class GreedyPlugin < MinecraftBase
     @blocks ||= YAML.load_file(File.join(BASE_DIR, 'config/blocks.yml'))
     @blocks
   end
+
   def items
     @items ||= YAML.load_file(File.join(BASE_DIR, 'config/items.yml'))
     @items
   end
-  
+
   def get(name)
     if i = get_from_hash(name, blocks)
       return i
@@ -126,10 +127,10 @@ class GreedyPlugin < MinecraftBase
   end
 
   def givestuff(user, stuff)
-		say("Giving #{user} stuff")
-		stuff.each do |item|
-			give(user, item[:id], item[:count])
-			sleep(0.1)
-		end
+    say("Giving #{user} stuff")
+    stuff.each do |item|
+      give(user, item[:id], item[:count])
+      sleep(0.1)
+    end
   end
 end
