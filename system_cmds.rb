@@ -11,8 +11,8 @@ class MinecraftBase
   end
 
   def permission_denied
-		say("You do not have permission to do that")
-	end
+    say("You do not have permission to do that")
+  end
 	
   def say(text)
     cmd("say #{text}")
@@ -107,19 +107,18 @@ class SystemCmds < MinecraftBase
 	def load_plugins
     puts "Loading Plugins"
 
-		@plugins = []
-		Dir.entries(PLUGIN_DIR).each do |plugin|
-			next if plugin[0] == ?.
-			f = File.join(PLUGIN_DIR, plugin)
+    @plugins = []
+    Dir.entries(PLUGIN_DIR).each do |plugin|
+      next if plugin[0] == ?.
+      f = File.join(PLUGIN_DIR, plugin)
 
       puts "Requiring #{f}"
       require f 
 
       klass = Kernel.const_get(File.basename(f, '.rb').classify)
       puts "Found #{klass}"
-      
- 
-			@plugins << klass.new(@stdin, @stdout, @stderr)
-		end
-	end
+
+      @plugins << klass.new(@stdin, @stdout, @stderr)
+    end
+  end
 end
