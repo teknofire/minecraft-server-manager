@@ -14,7 +14,7 @@ Greedy Plugin
 -------------
   #gimme - This will throw down several items
   #tons <id> - Gives tons of item with the specified id
-  #give <id> <count> - Thows down the given number of item with the specified id
+  #give <id> <count> - Throws down the given number of item with the specified id
   #test - Debug cmd, will be removed
 
 TODOs
