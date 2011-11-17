@@ -28,16 +28,16 @@ Xms = $CONFIG['Xms'] || '1024M'
 cmd = "java -Xmx#{Xmx} -Xms#{Xms} -jar #{$CONFIG['server_jar']} nogui"
 
 def get_cmd(line)
-	if m = line.match(/<(\w+)>\s#(\w+)\s*(.*)/)
-		marray = m.to_a
-		matched = marray.shift
-		cmd = { :user => marray.shift, :cmd => marray.shift.to_sym }
-		cmd[:opts] = marray.shift.split(' ').compact
+  if m = line.match(/<(\w+)>\s#(\w+)\s*(.*)/)
+    marray = m.to_a
+    matched = marray.shift
+    cmd = { :user => marray.shift, :cmd => marray.shift.to_sym }
+    cmd[:opts] = marray.shift.split(' ').compact
 
-		return cmd
-	else
-		false
-	end
+    return cmd
+  else
+    false
+  end
 end
 
 puts "Starting minecraft server"
