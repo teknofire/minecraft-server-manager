@@ -65,7 +65,7 @@ class SystemCmds < MinecraftBase
     end
   end
 
-	def process(line)
+  def process(line)
     output = decode(line)
     return unless output
 
@@ -87,24 +87,24 @@ class SystemCmds < MinecraftBase
 		end
 	end
 
-	def reload(user, *opts)
-		if $CONFIG['admins'].include? user
-			say("Reloading plugins")
-			@plugins.each do |plugin|
-				begin
-					Object.instance_eval(:remove_const, plugin.class.to_s)
-				rescue
-				end
-			end
-			load_plugins
-		else
-			permission_denied
-		end	
-	end
+  def reload(user, *opts)
+    if $CONFIG['admins'].include? user
+      say("Reloading plugins")
+      @plugins.each do |plugin|
+        begin
+          Object.instance_eval(:remove_const, plugin.class.to_s)
+        rescue
+        end
+      end
+      load_plugins
+    else
+      permission_denied
+    end	
+  end
 
-	protected
+  protected
 
-	def load_plugins
+  def load_plugins
     puts "Loading Plugins"
 
     @plugins = []
